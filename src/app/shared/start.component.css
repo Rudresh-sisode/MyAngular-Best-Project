@@ -1,0 +1,41 @@
+@import "http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css";
+
+
+.crop{
+    overflow: hidden;
+}
+
+.box{
+    
+    
+    direction: rtl;
+}
+.box a:hover{
+    color: midnightblue;
+   
+
+}
+.b1:hover ~ a{
+    color: midnightblue;
+   
+}
+
+.b2:hover ~ a{
+    color: midnightblue;
+    
+}
+
+.b3:hover ~ a{
+    color: midnightblue;
+    
+}
+
+.b4:hover ~ a{
+    color: midnightblue;
+   
+}
+
+.b5:hover ~ a{
+    color: midnightblue;
+   
+}

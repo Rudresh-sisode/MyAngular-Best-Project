@@ -1,0 +1,87 @@
+
+
+    
+<h2 [ngStyle]="{color:getColor()}" [ngClass]="{online: serverStatus === 'Online'}">server status is {{serverStatus}}</h2>
+<div class="container"></div>
+<div class="container">
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{title}}
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class='col-md-3'>
+                User Input
+            </div>
+            <div class="col-md-4">
+                <input type="text"
+                [(ngModel)]='userText'/>
+            </div>"
+        </div>
+        <div class="row">
+        <div class="col-md-6">
+            <h3>Number of product search on basis of {{userText}}
+                {{(product | search:userText).length }}
+            </h3>
+        </div>
+        </div>
+        <div class="table-resposive">
+            <table class="table" *ngIf='product && product.length; else noData' >
+                <thead>
+                    <tr>
+                        <td>
+                                <!–– (click) is one way event binding ––>
+                            <button type="button" class='btn btn-success' (click)='toggleImage()'>{{showImage?'Hide Image':'Show Image'}}</button>
+                        </td>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                                Code
+                            </th>
+                        <th>
+                                Date
+                         </th>
+                         <th>
+                                Price
+                        </th>
+                        <th>
+                                Rating
+                            </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let prod of product | search:userText">
+                            <!–– [src] is one way property binding ––>
+                       <td><img [src]='prod.imageUrl'
+                        [style.width.px]='imageWidth'
+                        *ngIf='showImage'/></td>
+                       
+                        <td>
+                            <a [routerLink]="['/product',prod.productId]">
+                            {{prod.productName | myPipe:'upper '}}
+                        </a>
+                        </td>
+                        <td>
+                             {{prod.productCode}}
+                        </td>
+                         <td>
+                             {{prod.releaseDate | date:'MM/dd/yyyy'}}
+                         </td>
+                         <td [ngStyle]="{'background-color':prod.price<25?'tomato':'skyblue'}">
+                             {{prod.price |discount | currency:'INR'}}
+                         </td>
+                         <td >
+                            <app-start [rating]="prod.starRating"></app-start>
+                         </td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #noData>
+                <img src="../../assets/lod.gif"/>
+            </ng-template>
+        </div>
+    </div>
+</div>
+</div>
